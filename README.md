@@ -16,6 +16,8 @@ A user should be able to add an app, but this is not finished.
  * Add functionally so that when you press the add button the card shows in the grid.
  * Fix the pagination so that only 9 items show per page (Bonus: in a 3x3 grid) and the number of pages is correct.
  * BONUS: Add funtionality to edit existing cards by clicking the "ng-click" functionality on the cards. A user should be allowed to cancel the editing.
+
+ Extra note: This challenge is focus on frontend, so I will use "local storage" to save contact data.
 _____________________________________________________
 
 
