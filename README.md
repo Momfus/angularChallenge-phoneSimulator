@@ -1,4 +1,23 @@
+
+
 # AngularChallengePhoneSimulator
+
+This technical challenge was made for 5thKind Studio with Angular.
+
+# Challenge:
+
+ NOTE: Search in the folder src/assets/challenge-example for a mockup image to use as a base example.
+
+ This is a "phone simulator" with each square representing an app. The apps show their name and version number. When a user clicks an app, it just gives the user some contact info.
+A user should be able to add an app, but this is not finished.
+
+ * Add a loading indicator for when we load up the cards.
+ * Add validation to the version to make sure it fits semantic versioning standards (major, minor, patch)
+ * Add functionally so that when you press the add button the card shows in the grid.
+ * Fix the pagination so that only 9 items show per page (Bonus: in a 3x3 grid) and the number of pages is correct.
+ * BONUS: Add funtionality to edit existing cards by clicking the "ng-click" functionality on the cards. A user should be allowed to cancel the editing.
+_____________________________________________________
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.4.
 
