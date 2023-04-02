@@ -1,33 +1,35 @@
-
-<div *ngIf="contactList.length > 0; else noContactList">
+<div *ngIf="contactsList.length > 0; else noContactList">
+  <!-- Paginator top -->
   <mat-paginator
-    #paginatorTop
     pageSize="9"
     hidePageSize="true"
+    [length]="contactsList.length"
     (page)="onPageChange($event)"
     showFirstLastButtons
   ></mat-paginator>
 
+  <!-- Contact cards -->
   <section class="container--contact" tabindex="0">
+    <mat-grid-list
+      [cols]="gridCols"
+      rowHeight="2:1"
+      gutterSize="16px"
+      fxLayout.xs="column"
+      fxLayout.sm="column"
+      fxLayout.gt-sm="row"
+      tabindex="0"
+    >
+      <mat-grid-tile *ngFor="let contact of contactsList">
+        <app-contact-card [contact]="contact"></app-contact-card>
+      </mat-grid-tile>
 
-    <app-contact-card></app-contact-card>
-
+    </mat-grid-list>
   </section>
-
-  <mat-paginator
-    #paginatorBottom
-    pageSize="9"
-    hidePageSize="true"
-    (page)="onPageChange($event)"
-    showFirstLastButtons
-  ></mat-paginator>
 
 </div>
 
 <ng-template #noContactList>
-
-  <div style="display: flex;justify-content: center;">
+  <div style="display: flex; justify-content: center">
     <h2>There are no contacts to show.</h2>
   </div>
-
 </ng-template>

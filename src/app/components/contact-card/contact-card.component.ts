@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Contact } from '../../models/contact.model';
 
 @Component({
   selector: 'app-contact-card',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./contact-card.component.scss']
 })
 export class ContactCardComponent {
+
+  @Input() contact!: Contact;
 
 }

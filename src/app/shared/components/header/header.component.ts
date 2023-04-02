@@ -10,7 +10,7 @@ import { Contact } from '../../../models/contact.model';
   styles: [
   `
     .title {
-      font-size: clamp(12pt, calc(1.5vw + 2pt), 20pt);
+      font-size: clamp(9pt, 1.5vw + 2pt, 20pt);
     }
 
     .spacer {
