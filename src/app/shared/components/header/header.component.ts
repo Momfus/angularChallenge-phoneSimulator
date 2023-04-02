@@ -35,18 +35,18 @@ export class HeaderComponent {
 
     dialogRef
       .afterClosed()
-      .subscribe((result: { contact: Contact }) => {
-        if (result && result.contact) {
-          this.snackBarContactAdded(result.contact);
+      .subscribe((result: { nameContact: string, isEdit: boolean }) => {
+        if (result && !result.isEdit) {
+          this.snackBarContactAdded(result.nameContact);
         }
       });
   }
 
 
-  snackBarContactAdded( contact: Contact ) {
+  snackBarContactAdded( name: string) {
 
     this.snackBar.open(
-      `Contact "${contact.name} " created`,
+      `Contact "${name} " created`,
       'Close',
       {
         duration: 2000,
