@@ -10,4 +10,7 @@ export class ContactCardComponent {
 
   @Input() contact!: Contact;
 
+  onDelete(): void {
+
+  }
 }

@@ -11,6 +11,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   imports: [
@@ -24,7 +26,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
-    MatGridListModule
+    MatGridListModule,
+    MatCardModule,
+    MatIconModule
   ],
   exports: [
     MatProgressSpinnerModule,
@@ -36,7 +40,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
-    MatGridListModule
+    MatGridListModule,
+    MatCardModule,
+    MatIconModule
   ]
 })
 export class AngularMaterialModule { }

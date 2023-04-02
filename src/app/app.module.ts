@@ -11,13 +11,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
 import { ContactCardComponent } from './components/contact-card/contact-card.component';
 import { FormContactComponent } from './components/form-contact/form-contact.component';
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ContactCardComponent,
-    FormContactComponent
+    FormContactComponent,
+    TruncatePipe
   ],
   imports: [
     BrowserModule,
