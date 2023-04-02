@@ -1,4 +1,4 @@
-<div *ngIf="contactsList.length > 0; else noContactList">
+<div class="contact-paginated" *ngIf="contactsList.length > 0; else noContactList">
   <!-- Paginator top -->
   <mat-paginator
     pageSize="9"
@@ -9,21 +9,12 @@
   ></mat-paginator>
 
   <!-- Contact cards -->
-  <section class="container--contact" tabindex="0">
-    <mat-grid-list
-      [cols]="gridCols"
-      rowHeight="2:1"
-      gutterSize="16px"
-      fxLayout.xs="column"
-      fxLayout.sm="column"
-      fxLayout.gt-sm="row"
-      tabindex="0"
-    >
-      <mat-grid-tile *ngFor="let contact of contactsList">
-        <app-contact-card [contact]="contact"></app-contact-card>
-      </mat-grid-tile>
+  <section class="container-contact mat-elevation-z8" tabindex="0">
 
-    </mat-grid-list>
+    <div *ngFor="let contact of contactsList">
+      <app-contact-card [contact]="contact"></app-contact-card>
+    </div>
+
   </section>
 
 </div>
