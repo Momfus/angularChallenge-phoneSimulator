@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Contact } from '../models/contact.model';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -11,20 +11,30 @@ export class ContactInfoService {
   private readonly CONTACT_STORAGE_KEY = 'contacts';
 
   private contacts$ = new BehaviorSubject<Contact[]>([]);
+  private totalCount$ = new BehaviorSubject<number>(0);
 
   constructor() {
     this.contacts$.next(JSON.parse(localStorage.getItem(this.CONTACT_STORAGE_KEY)  ?? '[]') );
+    this.totalCount$.next(this.contacts$.getValue().length);
   }
 
   private saveToLocalStorage(contacts: Contact[]): void {
     localStorage.setItem(this.CONTACT_STORAGE_KEY, JSON.stringify(contacts));
   }
 
-  getContacts(): Observable<Contact[]> {
-
-    return this.contacts$.asObservable();
-
+  getContacts(pageIndex: number, pageSize: number): Observable<Contact[]> {
+    const contactsList = this.contacts$.getValue();
+    const startIndex = pageIndex * pageSize;
+    const endIndex = startIndex + pageSize;
+    const contactsPage = contactsList.slice(startIndex, endIndex);
+    return of(contactsPage);
   }
+
+
+  getTotalCount(): Observable<number> {
+    return this.totalCount$.asObservable();
+  }
+
 
   createContact(contact: Contact): void {
 
@@ -33,6 +43,7 @@ export class ContactInfoService {
 
     contactsList.push(newContact);
     this.contacts$.next(contactsList);
+    this.totalCount$.next(contactsList.length);
     this.saveToLocalStorage(contactsList);
 
   }
@@ -52,13 +63,14 @@ export class ContactInfoService {
 
   deleteContact(id: string): void {
 
-    const contactList = this.contacts$.getValue();
-    const index = contactList.findIndex( c => c.id === id);
+    const contactsList = this.contacts$.getValue();
+    const index = contactsList.findIndex( c => c.id === id);
 
     if( index !== -1 ) {
-      contactList.splice(index, 1);
-      this.contacts$.next(contactList);
-      this.saveToLocalStorage(contactList);
+      contactsList.splice(index, 1);
+      this.contacts$.next(contactsList);
+      this.totalCount$.next(contactsList.length);
+      this.saveToLocalStorage(contactsList);
     }
 
   }

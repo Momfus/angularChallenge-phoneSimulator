@@ -11,6 +11,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 })
 export class HomeComponent implements OnInit {
   gridCols: number = 3;
+  totalCount: number = 0;
   contactsList: Contact[] = [];
 
   constructor(
@@ -31,12 +32,17 @@ export class HomeComponent implements OnInit {
 
   }
 
-  setContactList() {
-    this.contactService.getContacts().subscribe((contacts: Contact[]) => {
+  setContactList(pageIndex: number = 0, pageSize: number = 9) {
+    this.contactService.getContacts(pageIndex, pageSize).subscribe((contacts: Contact[]) => {
       console.log(contacts);
       this.contactsList = contacts;
     });
+
+
+    this.contactService.getTotalCount().subscribe( total => this.totalCount = total );
   }
 
-  onPageChange(event: PageEvent) {}
+  onPageChange(event: PageEvent): void {
+    this.setContactList(event.pageIndex, event.pageSize);
+  }
 }
