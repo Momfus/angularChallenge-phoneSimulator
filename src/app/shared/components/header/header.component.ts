@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { FormAddContactComponent } from '../../../components/form-add-contact/form-add-contact.component';
+import { FormContactComponent } from '../../../components/form-contact/form-contact.component';
 import { Contact } from '../../../models/contact.model';
 
 @Component({
@@ -29,7 +29,7 @@ export class HeaderComponent {
 
 
   onDialogFormModal() {
-    const dialogRef = this.dialog.open(FormAddContactComponent, {
+    const dialogRef = this.dialog.open(FormContactComponent, {
       width: '400px',
     });
 
