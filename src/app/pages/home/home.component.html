@@ -17,7 +17,7 @@
     <div *ngFor="let contact of contactsList">
       <app-contact-card
         [contact]="contact"
-        (edit)="onContactEdit(contact.id)"
+        (edit)="onContactEdit(contact)"
         (delete)="onContactDelete(contact.id)"
       ></app-contact-card>
     </div>

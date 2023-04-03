@@ -35,8 +35,8 @@ export class HeaderComponent {
 
     dialogRef
       .afterClosed()
-      .subscribe((result: { nameContact: string, isEdit: boolean }) => {
-        if (result && !result.isEdit) {
+      .subscribe((result: { nameContact: string, type: string }) => {
+        if (result && result.type === 'new') {
           this.snackBarContactAdded(result.nameContact);
         }
       });

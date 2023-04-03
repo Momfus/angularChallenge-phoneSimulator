@@ -2,3 +2,13 @@
 mat-form-field {
   width: 100%;
 }
+
+.button-group {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

@@ -3,6 +3,9 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Contact } from '../../models/contact.model';
 import { ContactInfoService } from '../../services/contact-info.service';
 import { LoadingService } from '../../services/loading.service';
+import { FormContactComponent } from '../../components/form-contact/form-contact.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -24,6 +27,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private contactService: ContactInfoService,
     private loadingService: LoadingService,
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -56,7 +61,6 @@ export class HomeComponent implements OnInit {
       },
       error: ( error: String) => {
         console.error(error);
-
       },
       complete: () => {
 
@@ -74,11 +78,41 @@ export class HomeComponent implements OnInit {
     this.setContactList(this.pageCurrent, this.pageSize);
   }
 
-  onContactEdit(contactID: string): void {
-    console.log('EDIT')
+  onContactEdit(contact: Contact): void {
+    const dialogRef = this.dialog.open(FormContactComponent, {
+      width: '400px',
+      data: contact
+    });
+
+    dialogRef
+      .afterClosed()
+      .subscribe((result: { nameContact: string, type: string }) => {
+
+        if (result ) {
+          if( result.type === 'edit') {
+            this.snackBarContactNotification(result.nameContact, 'updated');
+          } else {
+            this.snackBarContactNotification(result.nameContact, 'deleted');
+          }
+        }
+      });
   }
 
   onContactDelete(contactID: string): void {
     this.contactService.deleteContact(contactID);
+  }
+
+  snackBarContactNotification( name: string, action: string) {
+
+    this.snackBar.open(
+      `Contact "${name} " ${action}`,
+      'Close',
+      {
+        duration: 2000,
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom',
+      }
+    );
+
   }
 }

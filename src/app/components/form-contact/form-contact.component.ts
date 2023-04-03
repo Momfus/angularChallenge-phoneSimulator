@@ -28,10 +28,10 @@ export class FormContactComponent implements OnInit {
 
   private buildContactForm(data: Contact): void {
     this.formContact = this.formBuilder.group({
-      name: [data ? data.name : 'asd', Validators.required],
-      version: [data ? data.version : '1.1.1', [Validators.required, this.versionValidator]],
+      name: [data ? data.name : '', Validators.required],
+      version: [data ? data.version : '', [Validators.required, this.versionValidator]],
       contactType: [data ? data.contactType : 'phone'],
-      contact: [data ? data.contact : '+542615561117', data && data.contactType === 'mail' ? Validators.email : [Validators.required, this.phoneValidator]]
+      contact: [data ? data.contact : '', data && data.contactType === 'mail' ? Validators.email : [Validators.required, this.phoneValidator]]
     });
 
     // Set the validator when the contactType change
@@ -98,8 +98,16 @@ export class FormContactComponent implements OnInit {
   }
 
   onClose(nameContact: string | null = null): void {
-    this.dialogRef.close({ nameContact, isEdit: this.isEdit });
+    if( nameContact ) {
+      this.dialogRef.close({ nameContact, type: this.isEdit? 'edit': 'new' });
+    } else {
+      this.dialogRef.close();
+    }
   }
 
+  onDelete() {
+    this.contactService.deleteContact(this.data.id)
+    this.dialogRef.close({ nameContact: this.data.name, type: 'delete' });
+  }
 
 }

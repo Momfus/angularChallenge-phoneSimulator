@@ -42,7 +42,13 @@
 </mat-dialog-content>
 
 <!-- Action buttons -->
-<div mat-dialog-actions align="end">
+<div mat-dialog-actions class="button-group">
+  <button mat-raised-button *ngIf="isEdit" color="warn" (click)="onDelete()">
+    Delete
+  </button>
+
+
+  <div class="spacer"></div>
 
   <button mat-button (click)="onClose()">
     Cancel
