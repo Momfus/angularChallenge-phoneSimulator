@@ -10,7 +10,7 @@ export class ContactInfoService {
 
   private readonly CONTACT_STORAGE_KEY = 'contacts';
 
-  private contacts$ = new BehaviorSubject<Contact[]>([]);
+  public contacts$ = new BehaviorSubject<Contact[]>([]);
   private totalCount$ = new BehaviorSubject<number>(0);
 
   constructor() {
@@ -43,7 +43,7 @@ export class ContactInfoService {
 
     contactsList.push(newContact);
     this.contacts$.next(contactsList);
-    this.totalCount$.next(contactsList.length);
+    this.totalCount$.next(contactsList.length)
     this.saveToLocalStorage(contactsList);
 
   }
@@ -69,7 +69,7 @@ export class ContactInfoService {
     if( index !== -1 ) {
       contactsList.splice(index, 1);
       this.contacts$.next(contactsList);
-      this.totalCount$.next(contactsList.length);
+      this.totalCount$.next(contactsList.length)
       this.saveToLocalStorage(contactsList);
     }
 

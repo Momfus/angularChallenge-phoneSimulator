@@ -28,10 +28,10 @@ export class FormContactComponent implements OnInit {
 
   private buildContactForm(data: Contact): void {
     this.formContact = this.formBuilder.group({
-      name: [data ? data.name : '', Validators.required],
-      version: [data ? data.version : '', [Validators.required, this.versionValidator]],
+      name: [data ? data.name : 'asd', Validators.required],
+      version: [data ? data.version : '1.1.1', [Validators.required, this.versionValidator]],
       contactType: [data ? data.contactType : 'phone'],
-      contact: [data ? data.contact : '', data && data.contactType === 'mail' ? Validators.email : [Validators.required, this.phoneValidator]]
+      contact: [data ? data.contact : '+542615561117', data && data.contactType === 'mail' ? Validators.email : [Validators.required, this.phoneValidator]]
     });
 
     // Set the validator when the contactType change
