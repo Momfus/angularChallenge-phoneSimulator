@@ -4,14 +4,12 @@ import { Contact } from '../../models/contact.model';
 @Component({
   selector: 'app-contact-card',
   templateUrl: './contact-card.component.html',
-  styleUrls: ['./contact-card.component.scss']
+  styleUrls: ['./contact-card.component.scss'],
 })
 export class ContactCardComponent {
-
   @Input() contact!: Contact;
   @Output() delete = new EventEmitter();
   @Output() edit = new EventEmitter();
-
 
   onEdit(): void {
     this.edit.emit();
@@ -21,5 +19,4 @@ export class ContactCardComponent {
     event.stopPropagation();
     this.delete.emit();
   }
-
 }

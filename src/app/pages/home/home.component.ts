@@ -12,9 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
 
   gridCols: number = 3;
   totalCount: number = 0;
@@ -22,7 +20,6 @@ export class HomeComponent implements OnInit {
 
   pageCurrent = 0;
   pageSize = 9;
-
 
   constructor(
     private contactService: ContactInfoService,
@@ -32,21 +29,15 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
-    this.contactService.contacts$.subscribe(
-      c => {
-        this.setContactList(this.pageCurrent, this.pageSize);
-      }
-    );
-
+    this.contactService.contacts$.subscribe((c) => {
+      this.setContactList(this.pageCurrent, this.pageSize);
+    });
   }
-
 
   setContactList(pageIndex: number = 0, pageSize: number = 9) {
     this.loadingService.setToLoad(true);
     this.contactService.getContacts(pageIndex, pageSize).subscribe({
       next: (contacts: Contact[]) => {
-
         this.contactsList = contacts;
 
         if (this.contactsList.length === 0 && this.pageCurrent > 0) {
@@ -55,21 +46,17 @@ export class HomeComponent implements OnInit {
           this.setContactList(this.pageCurrent, pageSize);
         }
 
-
-        this.contactService.getTotalCount().subscribe( total => this.totalCount = total );
-
+        this.contactService
+          .getTotalCount()
+          .subscribe((total) => (this.totalCount = total));
       },
-      error: ( error: String) => {
+      error: (error: String) => {
         console.error(error);
       },
       complete: () => {
-
         this.loadingService.setToLoad(false, 500); // Added to fake time loading to simulate http request
-
-      }
+      },
     });
-
-
   }
 
   onPageChange(event: PageEvent): void {
@@ -81,15 +68,14 @@ export class HomeComponent implements OnInit {
   onContactEdit(contact: Contact): void {
     const dialogRef = this.dialog.open(FormContactComponent, {
       width: '400px',
-      data: contact
+      data: contact,
     });
 
     dialogRef
       .afterClosed()
-      .subscribe((result: { nameContact: string, type: string }) => {
-
-        if (result ) {
-          if( result.type === 'edit') {
+      .subscribe((result: { nameContact: string; type: string }) => {
+        if (result) {
+          if (result.type === 'edit') {
             this.snackBarContactNotification(result.nameContact, 'updated');
           } else {
             this.snackBarContactNotification(result.nameContact, 'deleted');
@@ -102,17 +88,11 @@ export class HomeComponent implements OnInit {
     this.contactService.deleteContact(contactID);
   }
 
-  snackBarContactNotification( name: string, action: string) {
-
-    this.snackBar.open(
-      `Contact "${name} " ${action}`,
-      'Close',
-      {
-        duration: 2000,
-        horizontalPosition: 'center',
-        verticalPosition: 'bottom',
-      }
-    );
-
+  snackBarContactNotification(name: string, action: string) {
+    this.snackBar.open(`Contact "${name} " ${action}`, 'Close', {
+      duration: 2000,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
+    });
   }
 }

@@ -1,5 +1,4 @@
 div.contact-paginated {
-
   max-width: 1200px;
   margin: auto;
 
@@ -8,7 +7,7 @@ div.contact-paginated {
     justify-content: center;
   }
 
-  .container-contact{
+  .container-contact {
     overflow: auto;
     max-width: 1200px;
     padding: 0.5em;
@@ -25,13 +24,13 @@ div.contact-paginated {
 }
 
 @media (max-height: 600px) {
-  .container-contact{
+  .container-contact {
     max-height: 60vh;
   }
 }
 
 @media (min-height: 681) {
-  .container-contact{
+  .container-contact {
     max-height: 70vh;
   }
 }

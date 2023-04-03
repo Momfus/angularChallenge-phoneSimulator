@@ -43,6 +43,6 @@ import { MatIconModule } from '@angular/material/icon';
     MatGridListModule,
     MatCardModule,
     MatIconModule,
-  ]
+  ],
 })
-export class AngularMaterialModule { }
+export class AngularMaterialModule {}
