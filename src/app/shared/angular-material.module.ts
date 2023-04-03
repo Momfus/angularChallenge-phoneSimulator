@@ -28,7 +28,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatGridListModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
   ],
   exports: [
     MatProgressSpinnerModule,
@@ -42,7 +42,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatGridListModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
   ]
 })
 export class AngularMaterialModule { }

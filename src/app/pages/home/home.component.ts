@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Contact } from '../../models/contact.model';
 import { ContactInfoService } from '../../services/contact-info.service';
+import { LoadingService } from '../../services/loading.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -22,6 +23,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private contactService: ContactInfoService,
+    private loadingService: LoadingService,
   ) {}
 
   ngOnInit(): void {
@@ -36,6 +38,7 @@ export class HomeComponent implements OnInit {
 
 
   setContactList(pageIndex: number = 0, pageSize: number = 9) {
+    this.loadingService.setToLoad(true);
     this.contactService.getContacts(pageIndex, pageSize).subscribe({
       next: (contacts: Contact[]) => {
 
@@ -57,7 +60,7 @@ export class HomeComponent implements OnInit {
       },
       complete: () => {
 
-
+        this.loadingService.setToLoad(false, 500); // Added to fake time loading to simulate http request
 
       }
     });
