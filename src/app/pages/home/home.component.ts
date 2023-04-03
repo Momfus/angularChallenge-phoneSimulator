@@ -33,4 +33,12 @@ export class HomeComponent implements OnInit {
   onPageChange(event: PageEvent): void {
     this.setContactList(event.pageIndex, event.pageSize);
   }
+
+  onContactEdit(contactID: string): void {
+    console.log('EDIT')
+  }
+
+  onContactDelete(contactID: string): void {
+    console.log('DELETE')
+  }
 }

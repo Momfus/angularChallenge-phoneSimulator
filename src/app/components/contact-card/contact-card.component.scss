@@ -1,5 +1,5 @@
 .card {
-  flex-basis: 33.33%;
+
   width: 300px;
   height: 200px;
   margin-top: 1em;
@@ -9,6 +9,8 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease-in-out;
   position: relative;
+
+  cursor: pointer;
 
   &:hover {
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
@@ -28,9 +30,16 @@
     }
 
     .delete-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin-left: 8px;
       width: 32px;
       height: 32px;
+
+      mat-icon {
+        overflow: inherit;
+      }
     }
   }
 
@@ -40,7 +49,7 @@
     color: #777;
   }
 
-  .version {
+  .info {
     margin-top: 8px;
   }
 }

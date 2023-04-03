@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Contact } from '../../models/contact.model';
 
 @Component({
@@ -9,8 +9,17 @@ import { Contact } from '../../models/contact.model';
 export class ContactCardComponent {
 
   @Input() contact!: Contact;
+  @Output() delete = new EventEmitter();
+  @Output() edit = new EventEmitter();
 
-  onDelete(): void {
 
+  onEdit(): void {
+    this.edit.emit();
   }
+
+  onDelete(event: Event): void {
+    event.stopPropagation();
+    this.delete.emit();
+  }
+
 }

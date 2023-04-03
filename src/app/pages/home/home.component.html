@@ -12,7 +12,7 @@
   <section class="container-contact mat-elevation-z8" tabindex="0">
 
     <div *ngFor="let contact of contactsList">
-      <app-contact-card [contact]="contact"></app-contact-card>
+      <app-contact-card [contact]="contact" (edit)="onContactEdit(contact.id)" (delete)="onContactDelete(contact.id)"></app-contact-card>
     </div>
 
   </section>
