@@ -1,0 +1,73 @@
+<h2 mat-dialog-title>
+  {{ isEdit ? "Edit Contact" : "Add Contact" }}
+</h2>
+
+<mat-dialog-content [formGroup]="formContact">
+  <!-- Name -->
+  <mat-form-field appearance="fill">
+    <mat-label>Contact name </mat-label>
+    <input matInput placeholder="Name" formControlName="name" />
+    <mat-error *ngIf="formContact.controls['name'].invalid">
+      Name is required
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Version -->
+  <mat-form-field appearance="fill">
+    <mat-label>Version </mat-label>
+    <input matInput placeholder="Example: 1.0.1" formControlName="version" />
+    <mat-error *ngIf="formContact.controls['version'].invalid">
+      Version must match semantic versioning standards (e.g. 1.2.3)
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Contact Type -->
+  <mat-form-field appearance="fill">
+    <mat-label>Contact type </mat-label>
+    <mat-select placeholder="Contact Type" formControlName="contactType">
+      <mat-option value="phone">Phone</mat-option>
+      <mat-option value="mail">eMail</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Contact info -->
+  <mat-form-field appearance="fill">
+    <mat-label>Contact </mat-label>
+    <input
+      matInput
+      [placeholder]="
+        formContact.controls['contactType'].value === 'phone'
+          ? '+5455555555'
+          : 'example@email.com'
+      "
+      formControlName="contact"
+    />
+    <mat-error *ngIf="formContact.controls['contact'].invalid">
+      {{
+        formContact.controls["contactType"].value === "phone"
+          ? "Phone number is invalid"
+          : "eMail is invalid"
+      }}
+    </mat-error>
+  </mat-form-field>
+</mat-dialog-content>
+
+<!-- Action buttons -->
+<div mat-dialog-actions class="button-group">
+  <button mat-raised-button *ngIf="isEdit" color="warn" (click)="onDelete()">
+    Delete
+  </button>
+
+  <div class="spacer"></div>
+
+  <button mat-button (click)="onClose()">Cancel</button>
+
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="onSaveContact()"
+    [disabled]="formContact.invalid || formContact.pristine"
+  >
+    {{ isEdit ? "Edit" : "Create" }}
+  </button>
+</div>

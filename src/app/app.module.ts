@@ -6,22 +6,27 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './shared/angular-material.module';
 import { SharedComponentsModule } from './shared/components/shared-components.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HomeComponent } from './pages/home/home.component';
 import { ContactCardComponent } from './components/contact-card/contact-card.component';
-import { FormAddContactComponent } from './components/form-add-contact/form-add-contact.component';
+import { FormContactComponent } from './components/form-contact/form-contact.component';
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ContactCardComponent,
-    FormAddContactComponent
+    FormContactComponent,
+    TruncatePipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     SharedComponentsModule,
     AngularMaterialModule,
   ],

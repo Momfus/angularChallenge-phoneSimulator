@@ -15,9 +15,7 @@ import { Component } from '@angular/core';
         margin-left: 0.2em;
         font-size: 1.25rem;
       }
-  `
-  ]
+    `,
+  ],
 })
-export class FooterComponent {
-
-}
+export class FooterComponent {}
